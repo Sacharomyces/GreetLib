@@ -2,11 +2,11 @@
 
 (function (global, $) {
 
-    var Greetr = function (firstname, lastname, language) {
-        return new Greetr.init(firstname, lastname, language);
-    }
+    var Greeter = function (firstname, lastname, language) {
+        return new Greeter.init(firstname, lastname, language);
+    };
 
-    var supprotedLanguages = ['en','pl'];
+    var supportedLanguages = ['en','pl'];
 
     var greetings = {
 
@@ -23,14 +23,14 @@
 
     var msg;
 
-    Greetr.prototype = {
+    Greeter.prototype = {
 
         fullname: function(){
             return this.firstname+" "+this.lastname;
         },
 
         validateLang: function(){
-           if (supprotedLanguages.indexOf(this.language) === -1)
+           if (supportedLanguages.indexOf(this.language) === -1)
            {
                throw "Invalid language";
            }
@@ -87,22 +87,22 @@
 
     };
 
-    Greetr.init = function (firstname, lastname, language) {
+    Greeter.init = function (firstname, lastname, language) {
 
         var self = this;
 
         self.firstname = firstname || "";
         self.lastname = lastname || "";
         self.language = language || "pl";
-        self.msg;
 
+        self.validateLang();
     }
 
-    Greetr.init.prototype = Greetr.prototype;
+    Greeter.init.prototype = Greeter.prototype;
 
-    global.Greetr = global.G$ = Greetr;
+    global.Greetr = global.G$ = Greeter;
 
-    this.validateLang();
+
 
 }(window, jQuery));
 
